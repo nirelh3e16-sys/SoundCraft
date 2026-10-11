@@ -149,4 +149,4 @@ Found a bug or have an idea? Open an [issue](../../issues) and include your Mine
 
 Released under the [MIT License](LICENSE).
 
-Made by **Nir_el**.
+Made by **nirelh3e16-sys**.
