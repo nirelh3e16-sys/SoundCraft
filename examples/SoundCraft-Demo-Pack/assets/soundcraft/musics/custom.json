@@ -1,0 +1,13 @@
+{
+  "name": "Custom Mix",
+  "author": "Your name",
+  "description": "A playlist provided by a resource pack.",
+  "icon": true,
+  "tracks": [
+    {
+      "id": "demo_track",
+      "name": "Demo track",
+      "sound": "soundcraft:music.custom.demo"
+    }
+  ]
+}

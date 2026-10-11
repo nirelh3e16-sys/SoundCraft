@@ -1,0 +1,7 @@
+{
+  "music.custom.demo": {
+    "sounds": [
+      { "name": "soundcraft:music/custom/demo", "stream": true }
+    ]
+  }
+}

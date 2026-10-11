@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "soundcraft",
+  "version": "${version}",
+  "name": "SoundCraft",
+  "description": "Client-side music player and resource-pack playlist reader.",
+  "authors": [
+    "Nir_el"
+  ],
+  "license": "MIT",
+  "icon": "assets/soundcraft/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.nirel.soundcraft.client.SoundCraftClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
