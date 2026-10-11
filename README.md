@@ -1,49 +1,303 @@
-# SoundCraft 0.0.1 — Fabric 26.2 source
+# SoundCraft
 
-Client-only Minecraft music-player prototype by Nir_el. This archive contains source code; it is **not a tested release JAR**.
+**A client-side music player for Minecraft, with playlists you can add through resource packs.**
 
-## Changes in this repair pass
-- Updated the source to Minecraft 26.2's `Identifier`, `GuiGraphicsExtractor`, `extractRenderState`, `Gui#setScreen` and `KeyMappingHelper` API names.
-- Changed the default open-player key to **M** to avoid the common P key conflict. You can rebind it in Minecraft's Controls menu.
-- Fixed widget duplication by using `rebuildWidgets()` when refreshing the screen.
-- Added click-to-select/play and mouse-wheel scrolling for playlist tracks.
-- Added a sound-event existence check before playback and wired the saved 1–10 volume to the music sound instance.
-- Stop only the active SoundCraft sound event instead of stopping every sound in the MUSIC category.
-- Kept selection/playback flags when closing and reopening the player screen.
-- Added English and Russian keybind translations and made playlist IDs include the resource namespace to reduce collisions.
-- Removed the legacy `pack_format` from the demo pack metadata; use the demo pack as an example and check it against your exact Minecraft resource-pack format if the game warns about it.
-- Removed the old official-Mojang-mappings declaration, since Minecraft 26.2 uses unobfuscated names.
+![Minecraft](https://img.shields.io/badge/Minecraft-26.2-62B47A)
+![Loader](https://img.shields.io/badge/Fabric-client--side-DBD0B4)
+![Java](https://img.shields.io/badge/Java-25-orange)
+![License](https://img.shields.io/badge/License-MIT-blue)
+![Status](https://img.shields.io/badge/status-early%20alpha-yellow)
 
-## Resource-pack playlist format
-Put a playlist manifest at `assets/soundcraft/musics/<playlist_id>.json`:
+SoundCraft adds an in-game player that opens on top of the world without pausing the game. Pick a playlist, pick a track, and listen while you build, mine or explore. Anyone can add their own playlists with a plain resource pack. No coding is needed.
+
+> **Status: 0.0.1, early alpha.** This is the first public version. Some features are still planned, see [Roadmap](#roadmap).
+
+---
+
+## Features
+
+- **Non-pausing player screen.** Open it with a key (default **P**, rebindable in *Controls*). The game keeps running while it is open.
+- **Built-in "Disc" playlist** with vanilla music discs.
+- **Resource-pack playlists.** Any enabled resource pack can ship its own playlists as simple JSON files.
+- **Playback controls:** play/stop, next/previous track, shuffle and repeat toggles.
+- **Saved settings** in `config/soundcraft/player.json`.
+- **Client-only.** Install it on your own game. No server-side installation is required, and it works on any server.
+- **No extra dependencies** besides Fabric API. Nothing is downloaded from the internet.
+
+## Requirements
+
+| Component    | Version |
+|--------------|---------|
+| Minecraft    | 26.2    |
+| Fabric Loader | 0.19.5 or newer |
+| Fabric API   | any version for 26.2 |
+| Java         | 25 or newer |
+
+## Installation
+
+1. Install [Fabric Loader](https://fabricmc.net/use/) for Minecraft 26.2.
+2. Download [Fabric API](https://modrinth.com/mod/fabric-api) and put it in your `mods` folder.
+3. Download the SoundCraft `.jar` from the [Releases](../../releases) page and put it in the same `mods` folder.
+4. Launch the game and press **P** in a world.
+
+## Usage
+
+| Control | Action |
+|---------|--------|
+| **P** (rebindable) | Open or close the player |
+| `‹ Playlist` / `Playlist ›` | Switch playlist |
+| `− Track` / `Next +` | Previous / next track |
+| `Play` | Play the selected track, or stop it |
+| `Shuffle` | Random order when pressing *Next* |
+| `Repeat` | Repeat setting (saved, see [Roadmap](#roadmap)) |
+
+Resource-pack playlists are re-read every time you open the player. After enabling a new pack, press the key again.
+
+## Adding your own playlist (resource packs)
+
+Create a resource pack and put a manifest at:
+
+```
+assets/<namespace>/musics/<playlist_id>.json
+```
+
+Example manifest:
 
 ```json
 {
   "name": "Custom Mix",
   "author": "Your name",
-  "description": "Playlist description",
+  "description": "A playlist provided by a resource pack.",
+  "icon": true,
   "tracks": [
     { "id": "demo_track", "name": "Demo track", "sound": "soundcraft:music.custom.demo" }
   ]
 }
 ```
 
-The `sound` field is a Minecraft sound-event ID declared in that pack's `assets/soundcraft/sounds.json`. Audio files follow Minecraft's normal sound layout under `assets/soundcraft/sounds/`, for example `assets/soundcraft/sounds/music/custom/demo.ogg`, referenced as `soundcraft:music/custom/demo` in `sounds.json`. Audio should be OGG Vorbis. Enable the resource pack and reload resources before opening SoundCraft.
+Then declare the sound event in `assets/soundcraft/sounds.json`:
 
-## Build requirements
-- JDK 25
-- Gradle 9.5.1 or newer compatible with the selected Fabric Loom version
-- Network access for Gradle to resolve Minecraft/Fabric dependencies on the first build
+```json
+{
+  "music.custom.demo": {
+    "sounds": [
+      { "name": "soundcraft:musics/custom/demo", "stream": true }
+    ]
+  }
+}
+```
 
-Open the project root in IntelliJ IDEA and sync Gradle, then run `gradle build` from a terminal where Gradle 9.5.1+ is installed. The wrapper properties are included, but the wrapper JAR and launch scripts could not be added from this offline environment. The expected output path is `build/libs/soundcraft-0.0.1.jar`.
+And put the audio file at `assets/soundcraft/sounds/musics/custom/demo.ogg`.
 
-## Not yet implemented / not verified
-- This source was edited against the published Fabric 26.2 documentation, but **has not been compiled or launched in this environment**. The environment only has Java 21, not the required JDK 25; do not treat this archive as a confirmed working JAR.
-- The built-in `Disc` playlist is a list of vanilla music-disc sound-event IDs. It does not yet implement all soundtrack albums or update playlists.
-- `repeat` is a saved toggle only; automatic track-end detection/repeat is not implemented.
-- `drown_out_external_tracks` is a saved setting only; audio ducking/muting is not implemented.
-- Online URL playlists, HTTP downloads/cache management, user playlist editing, album-art rendering, seek/progress and track-duration display are not implemented.
-- Playback validation confirms that a sound event is registered, but it cannot guarantee that the selected event has a playable audio file in every resource-pack combination.
-- Playback status does not yet track the sound engine's natural end-of-track state, and a true pause/resume implementation is still pending.
+Notes:
 
-Config path: `.minecraft/config/soundcraft/player.json`.
+- The `sound` field is a Minecraft sound event ID declared in the pack's `sounds.json`.
+- Audio must be **OGG Vorbis**.
+- Only **enabled** resource packs are read.
+- A ready-to-copy example is in [`examples/SoundCraft-Demo-Pack`](examples/SoundCraft-Demo-Pack). Add your own `demo.ogg` to make it play.
+
+## Configuration
+
+The config file is created at `.minecraft/config/soundcraft/player.json`:
+
+| Key | Description |
+|-----|-------------|
+| `volume` | Volume level, 1 to 10 |
+| `replay` | Repeat toggle |
+| `random` | Shuffle toggle |
+| `drown_out_external_tracks` | Reserved for a future feature |
+| `last_vanilla_track` | Last played vanilla disc |
+
+## Building from source
+
+1. Install **JDK 25**.
+2. Clone the repository and open it in IntelliJ IDEA, or use the command line.
+3. Run:
+
+```bash
+gradle build
+```
+
+The jar will appear in `build/libs/`.
+
+Note: the repository does not include the Gradle wrapper scripts. Install Gradle 9.5 or newer and run `gradle wrapper` once if you want `./gradlew`.
+
+## Roadmap
+
+Planned, but **not implemented yet** in 0.0.1:
+
+- [ ] Volume slider (the setting is stored, but not applied yet)
+- [ ] Automatic next track and working *Repeat* at the end of a track
+- [ ] Real pause, progress bar and seeking
+- [ ] Scrolling and click-to-select in long track lists
+- [ ] Ducking or muting the game's own background music
+- [ ] Playlist artwork
+- [ ] Full catalogue of vanilla soundtrack albums
+- [ ] Online playlists and playlist creation UI
+
+## Known limitations
+
+- The "Play" button currently stops and restarts a track; there is no real pause.
+- Minecraft's sound API does not expose a stable catalogue of all vanilla soundtracks, so only music discs are listed.
+- The player state is reset when the screen is closed, although the music keeps playing.
+
+## Reporting issues
+
+Found a bug or have an idea? Open an [issue](../../issues) and include your Minecraft version, Fabric Loader / Fabric API versions and `latest.log`.
+
+## License
+
+Released under the [MIT License](LICENSE).
+
+Made by **# SoundCraft
+
+**A client-side music player for Minecraft, with playlists you can add through resource packs.**
+
+![Minecraft](https://img.shields.io/badge/Minecraft-26.2-62B47A)
+![Loader](https://img.shields.io/badge/Fabric-client--side-DBD0B4)
+![Java](https://img.shields.io/badge/Java-25-orange)
+![License](https://img.shields.io/badge/License-MIT-blue)
+![Status](https://img.shields.io/badge/status-early%20alpha-yellow)
+
+SoundCraft adds an in-game player that opens on top of the world without pausing the game. Pick a playlist, pick a track, and listen while you build, mine or explore. Anyone can add their own playlists with a plain resource pack. No coding is needed.
+
+> **Status: 0.0.1, early alpha.** This is the first public version. Some features are still planned, see [Roadmap](#roadmap).
+
+---
+
+## Features
+
+- **Non-pausing player screen.** Open it with a key (default **P**, rebindable in *Controls*). The game keeps running while it is open.
+- **Built-in "Disc" playlist** with vanilla music discs.
+- **Resource-pack playlists.** Any enabled resource pack can ship its own playlists as simple JSON files.
+- **Playback controls:** play/stop, next/previous track, shuffle and repeat toggles.
+- **Saved settings** in `config/soundcraft/player.json`.
+- **Client-only.** Install it on your own game. No server-side installation is required, and it works on any server.
+- **No extra dependencies** besides Fabric API. Nothing is downloaded from the internet.
+
+## Requirements
+
+| Component    | Version |
+|--------------|---------|
+| Minecraft    | 26.2    |
+| Fabric Loader | 0.19.5 or newer |
+| Fabric API   | any version for 26.2 |
+| Java         | 25 or newer |
+
+## Installation
+
+1. Install [Fabric Loader](https://fabricmc.net/use/) for Minecraft 26.2.
+2. Download [Fabric API](https://modrinth.com/mod/fabric-api) and put it in your `mods` folder.
+3. Download the SoundCraft `.jar` from the [Releases](../../releases) page and put it in the same `mods` folder.
+4. Launch the game and press **P** in a world.
+
+## Usage
+
+| Control | Action |
+|---------|--------|
+| **P** (rebindable) | Open or close the player |
+| `‹ Playlist` / `Playlist ›` | Switch playlist |
+| `− Track` / `Next +` | Previous / next track |
+| `Play` | Play the selected track, or stop it |
+| `Shuffle` | Random order when pressing *Next* |
+| `Repeat` | Repeat setting (saved, see [Roadmap](#roadmap)) |
+
+Resource-pack playlists are re-read every time you open the player. After enabling a new pack, press the key again.
+
+## Adding your own playlist (resource packs)
+
+Create a resource pack and put a manifest at:
+
+```
+assets/<namespace>/musics/<playlist_id>.json
+```
+
+Example manifest:
+
+```json
+{
+  "name": "Custom Mix",
+  "author": "Your name",
+  "description": "A playlist provided by a resource pack.",
+  "icon": true,
+  "tracks": [
+    { "id": "demo_track", "name": "Demo track", "sound": "soundcraft:music.custom.demo" }
+  ]
+}
+```
+
+Then declare the sound event in `assets/soundcraft/sounds.json`:
+
+```json
+{
+  "music.custom.demo": {
+    "sounds": [
+      { "name": "soundcraft:musics/custom/demo", "stream": true }
+    ]
+  }
+}
+```
+
+And put the audio file at `assets/soundcraft/sounds/musics/custom/demo.ogg`.
+
+Notes:
+
+- The `sound` field is a Minecraft sound event ID declared in the pack's `sounds.json`.
+- Audio must be **OGG Vorbis**.
+- Only **enabled** resource packs are read.
+- A ready-to-copy example is in [`examples/SoundCraft-Demo-Pack`](examples/SoundCraft-Demo-Pack). Add your own `demo.ogg` to make it play.
+
+## Configuration
+
+The config file is created at `.minecraft/config/soundcraft/player.json`:
+
+| Key | Description |
+|-----|-------------|
+| `volume` | Volume level, 1 to 10 |
+| `replay` | Repeat toggle |
+| `random` | Shuffle toggle |
+| `drown_out_external_tracks` | Reserved for a future feature |
+| `last_vanilla_track` | Last played vanilla disc |
+
+## Building from source
+
+1. Install **JDK 25**.
+2. Clone the repository and open it in IntelliJ IDEA, or use the command line.
+3. Run:
+
+```bash
+gradle build
+```
+
+The jar will appear in `build/libs/`.
+
+Note: the repository does not include the Gradle wrapper scripts. Install Gradle 9.5 or newer and run `gradle wrapper` once if you want `./gradlew`.
+
+## Roadmap
+
+Planned, but **not implemented yet** in 0.0.1:
+
+- [ ] Volume slider (the setting is stored, but not applied yet)
+- [ ] Automatic next track and working *Repeat* at the end of a track
+- [ ] Real pause, progress bar and seeking
+- [ ] Scrolling and click-to-select in long track lists
+- [ ] Ducking or muting the game's own background music
+- [ ] Playlist artwork
+- [ ] Full catalogue of vanilla soundtrack albums
+- [ ] Online playlists and playlist creation UI
+
+## Known limitations
+
+- The "Play" button currently stops and restarts a track; there is no real pause.
+- Minecraft's sound API does not expose a stable catalogue of all vanilla soundtracks, so only music discs are listed.
+- The player state is reset when the screen is closed, although the music keeps playing.
+
+## Reporting issues
+
+Found a bug or have an idea? Open an [issue](../../issues) and include your Minecraft version, Fabric Loader / Fabric API versions and `latest.log`.
+
+## License
+
+Released under the [MIT License](LICENSE).
+
+Made by **nirelh3e16-sys**.
