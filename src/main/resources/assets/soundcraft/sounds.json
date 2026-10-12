@@ -1,0 +1,33 @@
+{
+  "music.chase_the_skies.below_and_above": {
+    "sounds": [{ "name": "minecraft:music/game/below_and_above", "stream": true }]
+  },
+  "music.chase_the_skies.broken_clocks": {
+    "sounds": [{ "name": "minecraft:music/game/broken_clocks", "stream": true }]
+  },
+  "music.chase_the_skies.fireflies": {
+    "sounds": [{ "name": "minecraft:music/game/fireflies", "stream": true }]
+  },
+  "music.chase_the_skies.lilypad": {
+    "sounds": [{ "name": "minecraft:music/game/lilypad", "stream": true }]
+  },
+  "music.chase_the_skies.os_piano": {
+    "sounds": [{ "name": "minecraft:music/game/os_piano", "stream": true }]
+  },
+
+  "music.chaos_cubed.ebb": {
+    "sounds": [{ "name": "minecraft:music/game/ebb", "stream": true }]
+  },
+  "music.chaos_cubed.home": {
+    "sounds": [{ "name": "minecraft:music/game/home", "stream": true }]
+  },
+  "music.chaos_cubed.memories": {
+    "sounds": [{ "name": "minecraft:music/game/memories", "stream": true }]
+  },
+  "music.chaos_cubed.nightly": {
+    "sounds": [{ "name": "minecraft:music/game/nightly", "stream": true }]
+  },
+  "music.chaos_cubed.shores": {
+    "sounds": [{ "name": "minecraft:music/game/shores", "stream": true }]
+  }
+}
