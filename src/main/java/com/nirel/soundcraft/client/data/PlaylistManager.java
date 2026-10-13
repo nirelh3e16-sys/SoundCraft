@@ -26,6 +26,8 @@ public final class PlaylistManager {
         addDiscPlaylist();
         addChaseTheSkiesPlaylist();
         addChaosCubedPlaylist();
+        addVolumeAlphaPlaylist();
+        addVolumeBetaPlaylist();
         loadResourcePackPlaylists();
     }
 
@@ -33,13 +35,28 @@ public final class PlaylistManager {
         List<Track> discs = new ArrayList<>();
 
         String[][] discData = {
-                {"13", "13"}, {"cat", "Cat"}, {"blocks", "Blocks"}, {"chirp", "Chirp"},
-                {"far", "Far"}, {"mall", "Mall"}, {"mellohi", "Mellohi"}, {"stal", "Stal"},
-                {"strad", "Strad"}, {"ward", "Ward"}, {"11", "11"}, {"wait", "Wait"},
-                {"otherside", "Otherside"}, {"5", "5"}, {"pigstep", "Pigstep"},
-                {"relic", "Relic"}, {"precipice", "Precipice"}, {"creator", "Creator"},
-                {"creator_music_box", "Creator (Music Box)"}, {"tears", "Tears"},
-                {"lava_chicken", "Lava Chicken"}, {"bounce", "Bounce"}
+                {"13", "13"},
+                {"cat", "Cat"},
+                {"blocks", "Blocks"},
+                {"chirp", "Chirp"},
+                {"far", "Far"},
+                {"mall", "Mall"},
+                {"mellohi", "Mellohi"},
+                {"stal", "Stal"},
+                {"strad", "Strad"},
+                {"ward", "Ward"},
+                {"11", "11"},
+                {"wait", "Wait"},
+                {"otherside", "Otherside"},
+                {"5", "5"},
+                {"pigstep", "Pigstep"},
+                {"relic", "Relic"},
+                {"precipice", "Precipice"},
+                {"creator", "Creator"},
+                {"creator_music_box", "Creator (Music Box)"},
+                {"tears", "Tears"},
+                {"lava_chicken", "Lava Chicken"},
+                {"bounce", "Bounce"}
         };
 
         for (String[] disc : discData) {
@@ -65,11 +82,16 @@ public final class PlaylistManager {
         String author = "Amos Roddy";
 
         List<Track> tracks = List.of(
-                soundcraftTrack("below_and_above", "Below and Above", author, "music.chase_the_skies.below_and_above"),
-                soundcraftTrack("broken_clocks", "Broken Clocks", author, "music.chase_the_skies.broken_clocks"),
-                soundcraftTrack("fireflies", "Fireflies", author, "music.chase_the_skies.fireflies"),
-                soundcraftTrack("lilypad", "Lilypad", author, "music.chase_the_skies.lilypad"),
-                soundcraftTrack("os_piano", "O's Piano", author, "music.chase_the_skies.os_piano"),
+                soundcraftTrack("below_and_above", "Below and Above", author,
+                        "music.chase_the_skies.below_and_above"),
+                soundcraftTrack("broken_clocks", "Broken Clocks", author,
+                        "music.chase_the_skies.broken_clocks"),
+                soundcraftTrack("fireflies", "Fireflies", author,
+                        "music.chase_the_skies.fireflies"),
+                soundcraftTrack("lilypad", "Lilypad", author,
+                        "music.chase_the_skies.lilypad"),
+                soundcraftTrack("os_piano", "O's Piano", author,
+                        "music.chase_the_skies.os_piano"),
                 vanillaTrack("tears", "Tears", author, "music_disc.tears")
         );
 
@@ -105,6 +127,89 @@ public final class PlaylistManager {
         ));
     }
 
+    private static void addVolumeAlphaPlaylist() {
+        String author = "C418";
+
+        List<Track> tracks = List.of(
+                soundcraftTrack("key", "Key", author, "music.volume_alpha.key"),
+                soundcraftTrack("subwoofer_lullaby", "Subwoofer Lullaby", author,
+                        "music.volume_alpha.subwoofer_lullaby"),
+                soundcraftTrack("living_mice", "Living Mice", author,
+                        "music.volume_alpha.living_mice"),
+                soundcraftTrack("haggstrom", "Haggstrom", author,
+                        "music.volume_alpha.haggstrom"),
+                soundcraftTrack("danny", "Danny", author,
+                        "music.volume_alpha.danny"),
+                soundcraftTrack("minecraft", "Minecraft", author,
+                        "music.volume_alpha.minecraft"),
+                soundcraftTrack("clark", "Clark", author,
+                        "music.volume_alpha.clark"),
+                soundcraftTrack("sweden", "Sweden", author,
+                        "music.volume_alpha.sweden"),
+                soundcraftTrack("oxygene", "Oxygène", author,
+                        "music.volume_alpha.oxygene"),
+                soundcraftTrack("dry_hands", "Dry Hands", author,
+                        "music.volume_alpha.dry_hands"),
+                soundcraftTrack("wet_hands", "Wet Hands", author,
+                        "music.volume_alpha.wet_hands"),
+                soundcraftTrack("mice_on_venus", "Mice on Venus", author,
+                        "music.volume_alpha.mice_on_venus")
+        );
+
+        PLAYLISTS.add(new Playlist(
+                "volume_alpha",
+                "Volume Alpha",
+                author,
+                "Minecraft - Volume Alpha",
+                tracks,
+                true
+        ));
+    }
+
+    private static void addVolumeBetaPlaylist() {
+        String author = "C418";
+
+        List<Track> tracks = List.of(
+                soundcraftTrack("mutation", "Mutation", author,
+                        "music.volume_beta.mutation"),
+                soundcraftTrack("moog_city_2", "Moog City 2", author,
+                        "music.volume_beta.moog_city_2"),
+                soundcraftTrack("beginning_2", "Beginning 2", author,
+                        "music.volume_beta.beginning_2"),
+                soundcraftTrack("floating_trees", "Floating Trees", author,
+                        "music.volume_beta.floating_trees"),
+                soundcraftTrack("biome_fest", "Biome Fest", author,
+                        "music.volume_beta.biome_fest"),
+                soundcraftTrack("blind_spots", "Blind Spots", author,
+                        "music.volume_beta.blind_spots"),
+                soundcraftTrack("haunt_muskie", "Haunt Muskie", author,
+                        "music.volume_beta.haunt_muskie"),
+                soundcraftTrack("aria_math", "Aria Math", author,
+                        "music.volume_beta.aria_math"),
+                soundcraftTrack("dreiton", "Dreiton", author,
+                        "music.volume_beta.dreiton"),
+                soundcraftTrack("taswell", "Taswell", author,
+                        "music.volume_beta.taswell"),
+                soundcraftTrack("concrete_halls", "Concrete Halls", author,
+                        "music.volume_beta.concrete_halls"),
+                soundcraftTrack("dead_voxel", "Dead Voxel", author,
+                        "music.volume_beta.dead_voxel"),
+                soundcraftTrack("warmth", "Warmth", author,
+                        "music.volume_beta.warmth"),
+                soundcraftTrack("ballad_of_the_cats", "Ballad of the Cats", author,
+                        "music.volume_beta.ballad_of_the_cats")
+        );
+
+        PLAYLISTS.add(new Playlist(
+                "volume_beta",
+                "Volume Beta",
+                author,
+                "Minecraft - Volume Beta",
+                tracks,
+                true
+        ));
+    }
+
     private static Track vanillaTrack(String id, String title, String author, String soundPath) {
         return new Track(
                 id,
@@ -127,15 +232,20 @@ public final class PlaylistManager {
 
     private static void loadResourcePackPlaylists() {
         try {
-            Map<Identifier, Resource> manifests = Minecraft.getInstance().getResourceManager()
-                    .listResources("musics", id ->
-                            id.getPath().endsWith(".json")
-                                    && !id.getPath().equals("musics/sounds.json"));
+            Map<Identifier, Resource> manifests = Minecraft.getInstance()
+                    .getResourceManager()
+                    .listResources(
+                            "musics",
+                            id -> id.getPath().endsWith(".json")
+                                    && !id.getPath().equals("musics/sounds.json")
+                    );
 
             for (var entry : manifests.entrySet()) {
                 Identifier manifestId = entry.getKey();
                 String file = manifestId.getPath().substring("musics/".length());
-                String playlistId = manifestId.getNamespace() + ":" + file.substring(0, file.length() - 5);
+                String playlistId = manifestId.getNamespace()
+                        + ":"
+                        + file.substring(0, file.length() - 5);
 
                 try (Reader reader = entry.getValue().openAsReader()) {
                     JsonObject json = JsonParser.parseReader(reader).getAsJsonObject();
@@ -181,7 +291,7 @@ public final class PlaylistManager {
                         ));
                     }
                 } catch (Exception ignored) {
-                    // Один повреждённый JSON не должен ломать остальные плейлисты.
+                    // Повреждённый плейлист не должен ломать остальные.
                 }
             }
         } catch (Exception ignored) {
