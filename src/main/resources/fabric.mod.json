@@ -11,6 +11,9 @@
   "icon": "assets/soundcraft/icon.png",
   "environment": "client",
   "entrypoints": {
+    "main": [
+      "com.nirel.soundcraft.SoundCraft"
+    ],
     "client": [
       "com.nirel.soundcraft.client.SoundCraftClient"
     ]
