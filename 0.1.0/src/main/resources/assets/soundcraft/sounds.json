@@ -1,0 +1,113 @@
+{
+  "music.chase_the_skies.below_and_above": {
+    "sounds": [{ "name": "minecraft:music/game/below_and_above", "stream": true }]
+  },
+  "music.chase_the_skies.broken_clocks": {
+    "sounds": [{ "name": "minecraft:music/game/broken_clocks", "stream": true }]
+  },
+  "music.chase_the_skies.fireflies": {
+    "sounds": [{ "name": "minecraft:music/game/fireflies", "stream": true }]
+  },
+  "music.chase_the_skies.lilypad": {
+    "sounds": [{ "name": "minecraft:music/game/lilypad", "stream": true }]
+  },
+  "music.chase_the_skies.os_piano": {
+    "sounds": [{ "name": "minecraft:music/game/os_piano", "stream": true }]
+  },
+
+  "music.chaos_cubed.ebb": {
+    "sounds": [{ "name": "minecraft:music/game/ebb", "stream": true }]
+  },
+  "music.chaos_cubed.home": {
+    "sounds": [{ "name": "minecraft:music/game/home", "stream": true }]
+  },
+  "music.chaos_cubed.memories": {
+    "sounds": [{ "name": "minecraft:music/game/memories", "stream": true }]
+  },
+  "music.chaos_cubed.nightly": {
+    "sounds": [{ "name": "minecraft:music/game/nightly", "stream": true }]
+  },
+  "music.chaos_cubed.shores": {
+    "sounds": [{ "name": "minecraft:music/game/shores", "stream": true }]
+  },
+
+  "music.volume_alpha.key": {
+    "sounds": [{ "name": "minecraft:music/game/nuance1", "stream": true }]
+  },
+  "music.volume_alpha.subwoofer_lullaby": {
+    "sounds": [{ "name": "minecraft:music/game/hal1", "stream": true }]
+  },
+  "music.volume_alpha.living_mice": {
+    "sounds": [{ "name": "minecraft:music/game/hal2", "stream": true }]
+  },
+  "music.volume_alpha.haggstrom": {
+    "sounds": [{ "name": "minecraft:music/game/hal3", "stream": true }]
+  },
+  "music.volume_alpha.danny": {
+    "sounds": [{ "name": "minecraft:music/game/hal4", "stream": true }]
+  },
+  "music.volume_alpha.minecraft": {
+    "sounds": [{ "name": "minecraft:music/game/calm1", "stream": true }]
+  },
+  "music.volume_alpha.clark": {
+    "sounds": [{ "name": "minecraft:music/game/calm2", "stream": true }]
+  },
+  "music.volume_alpha.sweden": {
+    "sounds": [{ "name": "minecraft:music/game/calm3", "stream": true }]
+  },
+  "music.volume_alpha.oxygene": {
+    "sounds": [{ "name": "minecraft:music/game/nuance2", "stream": true }]
+  },
+  "music.volume_alpha.dry_hands": {
+    "sounds": [{ "name": "minecraft:music/game/piano1", "stream": true }]
+  },
+  "music.volume_alpha.wet_hands": {
+    "sounds": [{ "name": "minecraft:music/game/piano2", "stream": true }]
+  },
+  "music.volume_alpha.mice_on_venus": {
+    "sounds": [{ "name": "minecraft:music/game/piano3", "stream": true }]
+  },
+
+  "music.volume_beta.mutation": {
+    "sounds": [{ "name": "minecraft:music/menu/menu1", "stream": true }]
+  },
+  "music.volume_beta.moog_city_2": {
+    "sounds": [{ "name": "minecraft:music/menu/menu2", "stream": true }]
+  },
+  "music.volume_beta.beginning_2": {
+    "sounds": [{ "name": "minecraft:music/menu/menu3", "stream": true }]
+  },
+  "music.volume_beta.floating_trees": {
+    "sounds": [{ "name": "minecraft:music/menu/menu4", "stream": true }]
+  },
+  "music.volume_beta.biome_fest": {
+    "sounds": [{ "name": "minecraft:music/game/creative/creative1", "stream": true }]
+  },
+  "music.volume_beta.blind_spots": {
+    "sounds": [{ "name": "minecraft:music/game/creative/creative2", "stream": true }]
+  },
+  "music.volume_beta.haunt_muskie": {
+    "sounds": [{ "name": "minecraft:music/game/creative/creative3", "stream": true }]
+  },
+  "music.volume_beta.aria_math": {
+    "sounds": [{ "name": "minecraft:music/game/creative/creative4", "stream": true }]
+  },
+  "music.volume_beta.dreiton": {
+    "sounds": [{ "name": "minecraft:music/game/creative/creative5", "stream": true }]
+  },
+  "music.volume_beta.taswell": {
+    "sounds": [{ "name": "minecraft:music/game/creative/creative6", "stream": true }]
+  },
+  "music.volume_beta.concrete_halls": {
+    "sounds": [{ "name": "minecraft:music/game/nether/nether1", "stream": true }]
+  },
+  "music.volume_beta.dead_voxel": {
+    "sounds": [{ "name": "minecraft:music/game/nether/nether2", "stream": true }]
+  },
+  "music.volume_beta.warmth": {
+    "sounds": [{ "name": "minecraft:music/game/nether/nether3", "stream": true }]
+  },
+  "music.volume_beta.ballad_of_the_cats": {
+    "sounds": [{ "name": "minecraft:music/game/nether/nether4", "stream": true }]
+  }
+}
